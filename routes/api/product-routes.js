@@ -17,7 +17,8 @@ router.get('/', (req, res) => {
       {
         model: Tag,
         attributes: ['tag_name'],
-        through: ProductTag
+        through: ProductTag,
+        as: "product_tags"
       }
     ]
   })
@@ -32,7 +33,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
-  findOne({
+  Product.findOne({
     where: {
       id: req.params.id
     },
@@ -44,7 +45,8 @@ router.get('/:id', (req, res) => {
       {
         model: Tag,
         attributes: ['tag_name'],
-        through: ProductTag
+        through: ProductTag,
+        as: "product_tags"
       }
     ]
   })
@@ -131,7 +133,7 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   // delete one product by its `id` value
-  Product.delete({
+  Product.destroy({
     where: {
       id: req.params.id
     }
