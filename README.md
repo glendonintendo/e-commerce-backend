@@ -2,22 +2,33 @@
 - [Description](#description)
 - [Technologies Used](#technologies-used)
 - [Intallation and Usage](#intallation-and-usage)
-- [Submission Requirements](#submission-requirements)
-  - [User Story](#user-story)
-  - [Acceptance Criteria](#acceptance-criteria)
-  - [Grading Criteria](#grading-criteria)
-- [TO DO](#to-do)
+- [User Story](#user-story)
+- [Acceptance Criteria](#acceptance-criteria)
 ## Description
+The E-commerce Backend is strictly a backend application that uses Sequelize to query an inventory database. The database contains information for products, categories of products, and tags.
+
+The database is a series of related tables, described by the following picture:
+![relational table flowchart](assets/database-map.PNG)
+
+Users can get all information from a table, get an item from a table by id, update information in a table, and lastly delete any item. This makes the application total CRUD!
 ## Technologies Used
+- express: used to create a server using JavaScript
+- dotenv: used to store sensitive information including MySQL password and username in environment variables
+- MySQL2: used to create databases and tables, and run queries
+- Sequelize: used to create SQL queries in JavaScript
 ## Intallation and Usage
-## Submission Requirements
-### User Story
+After cloning the repository, users will have to create a .env file and store the DB_NAME, DB_USER, and DB_PW as the values used to connect to their MySQL database.
+
+Then users should `npm i` to download the necessary dependencies for the application. Then users should run `npm run seed` to seed their database with values, and lastly run `npm start` to start the server.
+
+Once the server is running, users can will be able to make db request using the port that the server is running on. By default, the application runs on port 3001.
+## User Story
 ```
 AS A manager at an internet retail company
 I WANT a back end for my e-commerce website that uses the latest technologies
 SO THAT my company can compete with other e-commerce companies
 ```
-### Acceptance Criteria
+## Acceptance Criteria
 ```
 GIVEN a functional Express.js API
 WHEN I add my database name, MySQL username, and MySQL password to an environment variable file
@@ -31,62 +42,3 @@ THEN the data for each of these routes is displayed in a formatted JSON
 WHEN I test API POST, PUT, and DELETE routes in Insomnia Core
 THEN I am able to successfully create, update, and delete data in my database
 ```
-### Grading Criteria
-#### Deliverables - 10%  <!-- omit in toc -->
-- [ ] GitHub repository containing application code
-#### Walkthrough Video - 37%  <!-- omit in toc -->
-- [ ] Demonstrates the functionality of the e-commerce back end
-- [ ] Shows all of the technical acceptance criteria being met
-- [ ] Demonstrates how to create the schema from the MySQL shell
-- [ ] Demonstrates how to seed the database from the command line
-- [ ] Demonstrates how to start the application’s server
-- [ ] Demonstrates GET routes for all categories, all products, and all tags being tested in Insomnia Core
-- [ ] Demonstrates GET routes for a single category, a single product, and a single tag being tested in Insomnia Core
-- [ ] Demonstrates POST, PUT, and DELETE routes for categories, products, and tags being tested in Insomnia Core
-#### Technical Acceptance Criteria - 40%  <!-- omit in toc -->
-- [ ] Uses MySQL2 and Sequelize to connect to MySQL database
-- [ ] Uses dotenv package to store sensitive data as environment variables
-- [ ] Syncs Sequelize models to MySQL database on server start
-- [ ] Includes column definitions for all four models:
-  - [ ] Category
-    - [ ] id: integer, not null, primary key, auto increment
-    - [ ] category_name: string, not null
-  - [ ] Product
-    - [ ] id: integer, not null, primary key, auto increment
-    - [ ] product_name: string, not null
-    - [ ] price: decimal, not null, validates value is decimal
-    - [ ] stock: integer, not null, default 10, validates value is numeric
-    - [ ] category_id: integer, references Category's id
-  - [ ] Tag
-    - [ ] id: integer, not null, primary key, auto increment
-    - [ ] tag_name: string
-  - [ ] ProductTag
-    - [ ] id: integer, not null, primary key, auto increment
-    - [ ] product_id: integer, references Product's id
-    - [ ] tag_id: integer, references Tag's id
-- [ ] Includes model associations:
-  - [ ] Product belongs to Category
-  - [ ] Category has many Products
-  - [ ] Product belong to many Tags through ProductTags
-  - [ ] Tag belongs to many Products
-#### Repository Quality - 13%  <!-- omit in toc -->
-- [ ] Has unique name
-- [ ] Follows best practices for file structure and naming conventions
-- [ ] Follows best practices for class/id naming conventions, indentation, quality comments, etc.
-- [ ] Contains multiple descriptive commit messages
-- [ ] Contains a high-quality README with description and a link to a walkthrough video
-
-
-
-## TO DO
-- [ ] Define columns in Models:
-  - [ ] Category
-  - [ ] Product
-  - [ ] ProductTag
-  - [ ] Tag
-- [ ] Set up Model relationships
-- [ ] Complete routes
-  - [ ] Category
-  - [ ] Product
-  - [ ] Tag
-- [ ] Setup .env file with MySQL info
